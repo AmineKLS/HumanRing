@@ -12,7 +12,6 @@ const Login = () => {
   const { loginWithRedirect, isAuthenticated, isLoading } = useAuth0()
 
   useEffect(() => {
-    // Stocker le token Auth0 dans localStorage si disponible
     const urlParams = new URLSearchParams(window.location.search)
     const token = urlParams.get("access_token")
     if (token) {
