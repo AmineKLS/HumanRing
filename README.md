@@ -43,6 +43,65 @@ Une application web pour créer et gérer des engagements numériques entre util
 
 ## ⚙️ Configuration
 
+### Auth0 Configuration
+
+1. **Create a Post-Login Action** in your Auth0 dashboard:
+   - Go to Actions > Flows > Login
+   - Click "+" to add a new action
+   - Select "Build Custom"
+   - Name it "Add UUID and Sync to MongoDB"
+   - Paste the following code:
+
+```javascript
+const { v4: uuidv4 } = require("uuid");
+const { MongoClient } = require("mongodb");
+
+exports.onExecutePostLogin = async (event, api) => {
+  const namespace = "https://humanring.com/";
+  let uuidToUse = event.user.app_metadata.uuid;
+
+  if (!uuidToUse) {
+    uuidToUse = uuidv4();
+    await api.user.setAppMetadata('uuid', uuidToUse);
+  }
+
+  api.idToken.setCustomClaim(namespace + 'uuid', uuidToUse);
+  api.accessToken.setCustomClaim(namespace + "uuid", uuidToUse);
+
+  const uri = event.secrets.MONGO_DB_URI;
+  const client = new MongoClient(uri);
+
+  try {
+    await client.connect();
+    const db = client.db("humanringdb");
+    const collection = db.collection("users");
+
+    await collection.updateOne(
+      { uuid: uuidToUse },
+      {
+        $set: {
+          auth0sub: event.user.user_id,
+          displayName: event.user.name,
+          email: event.user.email,
+          lastLogin: new Date(),
+        },
+        $setOnInsert: {
+          createdAt: new Date(),
+        },
+      },
+      { upsert: true }
+    );
+  } finally {
+    await client.close();
+  }
+};
+```
+
+2. **Add Required Secrets** to the Action:
+   - `MONGO_DB_URI`: Your MongoDB connection string
+
+3. **Deploy** the action and add it to your Login flow.
+
 ### Backend (humanring-backend)
 Créez un fichier `.env` dans le dossier `humanring-backend` :
 ```env
