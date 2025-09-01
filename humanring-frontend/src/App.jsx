@@ -12,7 +12,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
   return (
-  <ConfigProvider theme={{ token: { colorPrimary: '#18a88e', borderRadius: 8 } }} locale={frFR}>
+  <ConfigProvider  locale={frFR}>
     <Router>
       <Layout>
         <Routes>

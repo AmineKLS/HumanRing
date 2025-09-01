@@ -133,7 +133,7 @@ const History = () => {
 
 
   return (
-    <div style={{ maxWidth: 1000, margin: '0 auto'}}>
+    <div style={{ maxWidth: 1000,marginTop: '100px', marginBottom: '40px', marginLeft: 'auto', marginRight: 'auto'}}>
       <div style={{ marginBottom: '24px'}}>
         <Title level={2}>Historique des engagements</Title>
         <Title type="secondary">Retrouvez tous vos engagements créés et reçus</Title>

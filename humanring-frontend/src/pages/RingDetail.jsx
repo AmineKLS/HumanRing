@@ -67,7 +67,8 @@ const RingDetail = () => {
     await form.validateFields()
     const values = form.getFieldsValue()
     handleSignatureAction(values, status)
-  } catch {
+  } catch(error) {
+    console.error("Validation failed:", error)
   }
 }
 
@@ -117,11 +118,11 @@ const RingDetail = () => {
 
   
   return (
-    <div>
+    <div style={{ maxWidth: 800, marginTop: '100px', marginBottom: '40px', marginLeft: 'auto', marginRight: 'auto', padding: '20px' }}>
       <Card className="ring-detail">
         <Space direction='vertical' size='large' style={{ width: '100%' }}>
           <div style={{ textAlign: "center" }}>
-            <HeartOutlined style={{ fontSize: "48px", color: "#667eea", marginBottom: "16px" }} />
+            <img src="../../public/logo.png" alt="Heart Icon"  style={{ width: "100px", height: "100px"}} />
             <Title level={2}>Engagement émotionnel</Title>
             <Tag color={setStatusColor(ring.status)} icon={setStatusIcon(ring.status)} style={{ fontSize: "14px", padding: '4px 12px' }}>
               {ring.status === 'en_attente' ? 'En attente de signature' : ring.status === 'signé' ? 'Signé' : 'Rompu'}

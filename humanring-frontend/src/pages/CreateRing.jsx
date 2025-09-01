@@ -37,11 +37,11 @@ const CreateRing = () => {
   }
 
   return (
-    <div style={{ maxWidth: 800, margin: "0 auto" }}>
+    <div style={{ maxWidth: 800, marginTop: '100px', marginBottom: '40px', marginLeft: 'auto', marginRight: 'auto' }}>
       <Card className="engagement-form">
         <Space direction="vertical" size="large" style={{ width: "100%" }}>
           <div style={{ textAlign: "center" }}>
-            <HeartOutlined style={{ fontSize: "48px", color: "#667eea", marginBottom: "16px" }} />
+            <img src="../../public/logo.png" alt="Heart Icon"  style={{ width: "100px", height: "100px"}} />
             <Title level={2}>Créer un nouvel engagement</Title>
             <Paragraph style={{ fontSize: "16px", color: "#666" }}>
               Créez un lien d'engagement émotionnel avec une personne qui vous est chère. Exprimez votre intention

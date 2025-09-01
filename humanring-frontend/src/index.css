@@ -1,16 +1,17 @@
+/* Base Styles & Typography */
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
-    "Droid Sans", "Helvetica Neue", sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #F5F5F5;
+  background-color: #f6f8f9;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
 
+/* Dashboard Components */
 .dashboard-container {
   padding: 24px;
 }
@@ -22,8 +23,6 @@ code {
   margin-bottom: 24px;
 }
 
-
-
 .stats-card {
   border-radius: 12px;
   padding: 16px;
@@ -33,101 +32,130 @@ code {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-align: center;
 }
 
-.stat-0 {
-  background-color: #f0f4ff;
-  color: #667eea;
-}
-
-.stat-1 {
-  background-color: #e8f9f6;
-  color: #00796B;
-}
-
-.stat-2 {
-  background-color: #fff8e1;
-  color: #ffb300;
-}
-
-.stat-3 {
-  background-color: #ffebee;
-  color: #d32f2f;
-}
+.stat-0 { background-color: #f0f4ff; color: #667eea; }
+.stat-1 { background-color: #e8f9f6; color: #00796B; }
+.stat-2 { background-color: #fff8e1; color: #ffb300; }
+.stat-3 { background-color: #ffebee; color: #d32f2f; }
 
 .ring-list-card {
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  min-height: 100vh;
+  /* Soft background gradient from the image */
+  background: linear-gradient(180deg, rgba(230, 247, 255, 0.4) 0%, rgba(249, 227, 255, 0.4) 100%);
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
 }
 
-.recent-rings-list {
-  padding: 0;
+/* Main Card Container */
+.main-card {
+  text-align: center;
+  padding: 40px;
+  border-radius: 20px;
+  background-color: white;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+  max-width: 700px;
+  width: 100%;
+  position: relative;
+  z-index: 1; /* Ensures content is above the background blobs */
 }
 
-.recent-rings-list .ant-list-item {
-  border-bottom: 1px solid #f0f0f0;
-}
-
-.recent-rings-list .ant-list-item-meta {
+/* Header & Typography */
+.logo-container {
+  margin-bottom: 40px;
+  display: flex;
+  justify-content: center;
   align-items: center;
+  gap: 8px;
 }
 
-.recent-rings-list .ant-list-item-meta-avatar {
-  align-self: flex-start;
-  margin-right: 16px;
+.hero-title {
+  font-size: 36px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 16px;
 }
 
-.status-tag-signed {
-  background-color: #e5f5e3;
-  color: #52c41a;
-  border-color: #52c41a;
-  border-radius: 16px;
-  padding: 0 8px;
+.hero-paragraph {
+  font-size: 16px;
+  color: #666;
+  max-width: 500px;
+  margin: 0 auto;
 }
 
-.status-tag-waiting {
-  background-color: #fffbe6;
-  color: #faad14;
-  border-color: #faad14;
-  border-radius: 16px;
-  padding: 0 8px;
+/* Feature Icons */
+.features-container {
+  margin-top: 40px;
+  justify-content: center;
+  width: 100%;
 }
 
-.status-tag-broken {
-  background-color: #fff1f0;
-  color: #ff4d4f;
-  border-color: #ff4d4f;
-  border-radius: 16px;
-  padding: 0 8px;
+.feature-item {
+  text-align: center;
 }
 
-.quote-section {
-  background-color: #e8f9f6;
-  padding: 24px;
+.feature-icon {
+  font-size: 28px;
+  color: #5CA7F2;
+  margin-bottom: 8px;
+}
+
+/* Button */
+.button-gradient {
+  background: linear-gradient(90deg, #5CA7F2 0%, #A252F8 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  height: auto;
+  padding: 12px 32px;
+  font-weight: 500;
+  font-size: 16px;
+}
+
+/* Abstract Background Blobs */
+.background-blob-blue,
+.background-blob-purple {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  z-index: 0;
+}
+
+.background-blob-blue {
+  top: -10%;
+  left: -10%;
+  width: 40%;
+  height: 40%;
+  background: rgba(92, 103, 242, 0.1);
+}
+
+.background-blob-purple {
+  bottom: -10%;
+  right: -10%;
+  width: 40%;
+  height: 40%;
+  background: rgba(162, 82, 248, 0.1);
+}
+
+.card-signed {
+  background-color: #e6f7ff;
+  border-color: #91d5ff;
   border-radius: 12px;
   text-align: center;
-  font-style: italic;
-  margin-top: 24px;
 }
 
-.quote-icon {
-  font-size: 24px;
-  color: #00796B;
+.card-pending {
+  background-color: #f9e3ff;
+  border-color: #d1b1e9;
+  border-radius: 12px;
+  text-align: center;
 }
 
-.button-gradient {
-  background: linear-gradient(135deg, #00796B, #004d40);
-  color: white; 
-  border: none;
-  font-weight: bold;
-  border-radius: 8px; 
-  padding: 10px 24px;
-  height: auto;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); 
-  transition: all 0.3s ease;
-}
-
-.button-gradient:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+.card-declined {
+  background-color: #fff1f0;
+  border-color: #ffccc7;
+  border-radius: 12px;
+  text-align: center;
 }

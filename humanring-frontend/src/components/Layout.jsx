@@ -1,10 +1,12 @@
   import React, { useState, useEffect } from 'react'
-  import { Layout as AntLayout, Menu, Dropdown, Button, Avatar } from 'antd'
+  import { Layout as AntLayout, Menu, Dropdown, Button, Avatar, Typography } from 'antd'
   import { useAuth0 } from '@auth0/auth0-react'
   import { useNavigate, useLocation } from 'react-router-dom'
   import { DashboardOutlined, PlusOutlined, HistoryOutlined, HeartOutlined, UserOutlined } from '@ant-design/icons'
 
+
   const { Header, Content } = AntLayout
+  const { Title } = Typography
 
   const Layout = ({children}) => {
 
@@ -31,13 +33,12 @@
 
     return (
       <AntLayout style={{ minHeight: '100vh' }}>
-        <Header style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', background: '#292C7B', boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)', height: '80px', padding: '0 40px', position: 'fixed', top: 0, width: '100%', zIndex: 1000, transition: 'background-color 0.3s ease, opacity 0.3s ease', opacity: scrolled ? 0.85 : 1 }} >
-            <div style={{display: 'flex', alignItems: 'center'}}>
-              <HeartOutlined style={{ fontSize: '30px', color: '#18a88e', marginRight: '8px' }} onClick={() => navigate('/')}/>
-              <a className='humanring-logo' style={{ fontSize: '24px', fontWeight: 'bold', color: '#18a88e' }} onClick={() => navigate('/')}>HumanRing</a>
+        {isAuthenticated && (
+        <Header style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', background: '#f5f5f5', boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)', height: '80px', padding: '0 40px', position: 'fixed', top: 0, width: '100%', zIndex: 1000, transition: 'background-color 0.3s ease, opacity 0.3s ease', opacity: scrolled ? 0.65 : 1 }} >
+            <div style={{ marginTop: '40px', marginBottom: '40px', display: 'flex', alignContent: 'center', justifyContent: 'center', alignItems: 'center', gap: '0px' }} onClick={() => navigate('/')}>
+              <img src="../../public/logo.png" alt="HumanRing Logo Icon" style={{ height: '100px' }} />
+              <a><Title level={4} style={{ margin: 0, fontWeight: 600 }}>HumanRing</Title></a>
             </div>
-            {isAuthenticated && (
-            <>
             <Menu mode="horizontal" selectedKeys={[location.pathname]}  style={{ flex: 1, marginLeft: '40px', border: 'none', background: ' #18a88e' }} />
               <Dropdown style={{background: '#18a88e' }} menu={{ items: userMenuItems }} placement="bottomRight">
                 <Button type="text" style={{ display: 'flex', alignItems: 'center' }}>
@@ -45,10 +46,9 @@
                   {user?.name || user?.email}
                 </Button>
               </Dropdown>
-            </>
-            )}
         </Header>
-        <Content style={{ padding: '24px', background: '#F5F5F5', marginTop: '80px' }}>{children}</Content>
+        )}
+        <Content style={{  background: 'linear-gradient(180deg, rgba(230, 247, 255, 0.4) 0%, rgba(249, 227, 255, 0.4) 100%)' }}>{children}</Content>
       </AntLayout>
     )
   }

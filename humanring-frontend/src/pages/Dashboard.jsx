@@ -33,7 +33,6 @@ const Dashboard = () => {
   useEffect(() => {
     const initDashboard = async () => {
       if (user && user.sub) {
-        console.log("User email :", user.email);
         try {
           const idTokenClaims = await getIdTokenClaims();
 
@@ -114,7 +113,7 @@ const Dashboard = () => {
   }
   
   return (
-    <div className='dashboard-container' style={{ padding: '30px', maxWidth: '1200px', margin: '0 auto' }}>
+    <div className='dashboard-container' style={{ padding: '30px', maxWidth: '1200px', marginTop: '100px', marginBottom: '40px', marginLeft: 'auto', marginRight: 'auto' }}>
 
       <div className="dashboard-header">
         <Title level={2} style={{ margin: 0 }}>Bon retour, {user?.name}</Title>
@@ -128,11 +127,11 @@ const Dashboard = () => {
 
         <Button
           type="default"
-          style={{ backgroundColor: 'white', borderColor: '#f0f0f0', borderRadius: '8px', padding: '10px 24px', height: 'auto', color: '#00796B' }}
+          style={{ backgroundColor: 'white', borderColor: '#5CA7F2', borderRadius: '8px', padding: '10px 24px', height: 'auto', color: '#5CA7F2' }}
           icon={<EyeOutlined />}
           onClick={() => navigate('/history')}
         >
-          View History
+          Voir l'historique
         </Button>
       </div>
 
@@ -143,15 +142,15 @@ const Dashboard = () => {
     </div>
 
     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '16px', margin: '24px auto', maxWidth: '1200px' }}>
-      <div className='stats-card stat-1'>
+      <div className='card-signed'>
         <Title level={4} style={{ margin: 0, color: 'inherit' }}>Signé(s)</Title>
         <Text style={{ fontSize: '2em', color: 'inherit' }}>{rings.filter((r) => r.status === 'signé').length}</Text>
       </div>
-      <div className='stats-card stat-2'>
+      <div className='card-pending'>
         <Title level={4} style={{ margin: 0, color: 'inherit' }}>En attente</Title>
         <Text style={{ fontSize: '2em', color: 'inherit' }}>{rings.filter((r) => r.status === 'en_attente').length}</Text>
       </div>
-      <div className='stats-card stat-3'>
+      <div className='card-declined'>
         <Title level={4} style={{ margin: 0, color: 'inherit' }}>Rompu(s)</Title>
         <Text style={{ fontSize: '2em', color: 'inherit' }}>{rings.filter((r) => r.status === 'rompu').length}</Text>
       </div>
